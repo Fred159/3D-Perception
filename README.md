@@ -1,3 +1,58 @@
+# Udacity 3D perception project
+
+This project is aim to recognizes the objects with RGB-D camera. RGB-D camera can extract depth information and RGB raw image informaion. BY using these data, algorithm can extracts the objects' type and get their other information.
+
+I tried to run the pick and place part and control the robot arm, but it failed. So only recognition part code files were uploaded here.
+
+I followed steps as below.
+1. Install the essential environment with VM. pcl-python was also installed.
+2. launch the files in ros environment. 
+I have to say.... the launch process may appears many errors... but as long as Gazebo and Rviz open, then it can works. If not, the only easy way is re-install the environment in catkin_ws
+3. Make a pcl_callback(pcl_msg) function.
+  3.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 # 3D Perception
 Before starting any work on this project, please complete all steps for [Exercise 1, 2 and 3](https://github.com/udacity/RoboND-Perception-Exercises). At the end of Exercise-3 you have a pipeline that can identify points that belong to a specific object.
