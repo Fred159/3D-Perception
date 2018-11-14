@@ -158,17 +158,6 @@ def pcl_callback(pcl_msg):
 
     print('create cluster-mask point cloud')
     # TODO: Create Cluster-Mask Point Cloud to visualize each cluster separately
-
-    # cluster_color = get_color_list(len(cluster_indices))
-    # # print(cluster_color)
-    #
-    # for j, indices in enumerate(cluster_indices):
-    #     for i, indice in enumerate(indices):
-    #         color_cluster_point_list.append(
-    #             [white_cloud[indice][0], white_cloud[indice][1], white_cloud[indice][2], rgb_to_float(cluster_color[j])])
-    #
-    # clustered_cloud = pcl.PointCloud_PointXYZRGB()
-    # clustered_cloud.from_list(color_cluster_point_list)
     # Assign a color corresponding to each segmented object in scene
     color_cluster_point_list = []
     cluster_color = get_color_list(len(cluster_indices))
@@ -236,9 +225,7 @@ def pcl_callback(pcl_msg):
     except rospy.ROSInterruptException:
         pass
 
-
 print('start_pr2_mover')
-
 
 # function to load parameters and request PickPlace service
 def pr2_mover(object_list):
@@ -304,15 +291,6 @@ def pr2_mover(object_list):
         dict_list.append(yaml_dict)
     print('send to yaml')
     send_to_yaml("output_lm3.yaml", dict_list)
-    # TODO: Loop through the pick list
-
-    # TODO: Get the PointCloud for a given object and obtain it's centroid
-
-    # TODO: Create 'place_pose' for the object
-
-    # TODO: Assign the arm to be used for pick_place
-
-    # TODO: Create a list of dictionaries (made with make_yaml_dict()) for later output to yaml format
 
     # Wait for 'pick_place_routine' service to come up
     rospy.wait_for_service('pick_place_routine')
