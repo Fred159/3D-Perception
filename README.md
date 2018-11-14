@@ -7,48 +7,39 @@ I tried to run the pick and place part and control the robot arm, but it failed.
 I followed steps as below.
 ### 1. Install the essential environment with VM. pcl-python was also installed.
 ### 2. launch the files in ros environment. 
-### I have to say.... the launch process may appears many errors... but as long as Gazebo and Rviz open, then it can works. If not, the only easy way is re-install the environment in catkin_ws
+I have to say.... the launch process may appears many errors... but as long as Gazebo and Rviz open, then it can works. If not, the only easy way is re-install the environment in catkin_ws. sklearn version need to change to 0.16 version. 0.2 version doesn't have cross_validation function.
+
 ### 3. Make a pcl_callback(pcl_msg) function.
-#### 3.1
+3.1 pass a statistical outlier fitler to pcl data from ros environment. This step is in order to filtering the noise in pcl environemnt. mean setted to 12 and the deviation setted as 0.01
+3.2 Voxel Grid downsampling. Downsampling the the 3d data into 0.01m gird. This step can help perception more easier. It can helps filtering the useless features.
+![world1_downsampling](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world1_afterdownsampling.jpg)
+![world2_downsampling](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world2_downsampling.jpg)
+![world3_downsampling](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world3_downsampling.jpg)
+
+3.3 PassThrough filter. Perception doesn't need to process all the data. It just need forcus on the ROI of the objects. ROI x axis limit setted as [0.42, 0.8] , and the z axis limit setted as [0.6,0.9]
+![world1_ROI](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world1_after_ROI_limit.jpg)
+![world2_ROI](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world2_ROI_set.jpg)
+![world3_ROI](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world3_ROI_limit.jpg)
 
 
+3.4 RANSAC plane segmentation . Through this step, algorithm extracts the target cloud point group with distance threshold. So point of objects can be extracted. However , in this step, we just know the clould points are objects, but we can't know each points label(class).So we need to figure out the each cloud points label(class)
+3.5 Euclidean Clustering. Before figure out the each points class, we need to figure out each group. So we used euclidean clustering method to divided points into each group. 
+![world1_object_cloud_extract](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world1_objects.jpg)
+![world2_object_cloud_extract](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world2_objects.jpg)
+![world3_object_cloud_extract](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world3_objects.jpg)
 
+3.6 object recognition. After clustering step finished, every point was divided into each cluster. Then we use SVM method to teach algorithm to train a model to process the feature detection and feature mapping.
+3.6.1 by using the capture_features.py , many data were generated. 
+3.6.2 by using above training_set, trained the svm model. the confusion matrix like below.The accuracy was pretty high.
+### 4.Publish messages and subscribe node
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 5. move robot. 
+I tried to do this step, but I can't move the arm in ROS Rviz and Gazebo environment.
+### 6. Simulation results.
+Simulation results shows the pipeline could extract correctly in 100% in world1 and world2. However, in world3, it mis-predicted 2 items. I tried to figure it out, but failed. I think maybe I can try neural network in future. 
+![world1_recognition_result](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world1.jpg.jpg)
+![world2_recognition_result](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world2.jpg.jpg)
+![world3_recognition_result](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/world3.jpg.jpg)
 
 
 
