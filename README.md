@@ -31,6 +31,7 @@ I have to say.... the launch process may appears many errors... but as long as G
 3.6 object recognition. After clustering step finished, every point was divided into each cluster. Then we use SVM method to teach algorithm to train a model to process the feature detection and feature mapping.
 3.6.1 by using the capture_features.py , many data were generated. 
 3.6.2 by using above training_set, trained the svm model. the confusion matrix like below.The accuracy was pretty high.
+![confusion_matrix](https://github.com/Fred159/3D-Perception/blob/master/Project_Image/confusion_matrix.jpg)
 ### 4.Publish messages and subscribe node
 
 ### 5. move robot. 
