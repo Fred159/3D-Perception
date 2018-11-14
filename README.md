@@ -5,11 +5,11 @@ This project is aim to recognizes the objects with RGB-D camera. RGB-D camera ca
 I tried to run the pick and place part and control the robot arm, but it failed. So only recognition part code files were uploaded here.
 
 I followed steps as below.
-1. Install the essential environment with VM. pcl-python was also installed.
-2. launch the files in ros environment. 
-I have to say.... the launch process may appears many errors... but as long as Gazebo and Rviz open, then it can works. If not, the only easy way is re-install the environment in catkin_ws
-3. Make a pcl_callback(pcl_msg) function.
-  3.1
+### 1. Install the essential environment with VM. pcl-python was also installed.
+### 2. launch the files in ros environment. 
+### I have to say.... the launch process may appears many errors... but as long as Gazebo and Rviz open, then it can works. If not, the only easy way is re-install the environment in catkin_ws
+### 3. Make a pcl_callback(pcl_msg) function.
+#### 3.1
 
 
 
